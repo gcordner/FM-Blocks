@@ -21,5 +21,22 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
 		'viewScript' => 'file:./view.js'
+	),
+	'front-hero' => array(
+		'apiVersion' => 3,
+		'name' => 'fm/front-hero',
+		'title' => 'Front Page Hero',
+		'category' => 'media',
+		'icon' => 'format-image',
+		'supports' => array(
+			'align' => array(
+				'wide',
+				'full'
+			),
+			'anchor' => true,
+			'html' => false
+		),
+		'editorScript' => 'file:./index.js',
+		'render' => 'file:./render.php'
 	)
 );

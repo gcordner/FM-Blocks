@@ -1,0 +1,17 @@
+{
+  "apiVersion": 3,
+  "name": "fm/front-hero",
+  "title": "Front Page Hero",
+  "category": "media",
+  "icon": "format-image",
+  "supports": {
+    "align": [
+      "wide",
+      "full"
+    ],
+    "anchor": true,
+    "html": false
+  },
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php"
+}
