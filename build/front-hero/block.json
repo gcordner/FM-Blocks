@@ -12,6 +12,38 @@
     "anchor": true,
     "html": false
   },
+  "attributes": {
+    "desktopId": {
+      "type": "number"
+    },
+    "desktopAlt": {
+      "type": "string",
+      "default": ""
+    },
+    "mobile1Id": {
+      "type": "number"
+    },
+    "mobile1Alt": {
+      "type": "string",
+      "default": ""
+    },
+    "mobile2Id": {
+      "type": "number"
+    },
+    "mobile2Alt": {
+      "type": "string",
+      "default": ""
+    },
+    "ratioDesktop": {
+      "type": "string",
+      "default": "384/120"
+    },
+    "ratioMobile": {
+      "type": "string",
+      "default": "8/5"
+    }
+  },
   "editorScript": "file:./index.js",
+  "viewScript": "file:./view.js",
   "render": "file:./render.php"
 }

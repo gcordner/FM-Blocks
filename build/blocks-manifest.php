@@ -36,7 +36,39 @@ return array(
 			'anchor' => true,
 			'html' => false
 		),
+		'attributes' => array(
+			'desktopId' => array(
+				'type' => 'number'
+			),
+			'desktopAlt' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'mobile1Id' => array(
+				'type' => 'number'
+			),
+			'mobile1Alt' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'mobile2Id' => array(
+				'type' => 'number'
+			),
+			'mobile2Alt' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'ratioDesktop' => array(
+				'type' => 'string',
+				'default' => '384/120'
+			),
+			'ratioMobile' => array(
+				'type' => 'string',
+				'default' => '8/5'
+			)
+		),
 		'editorScript' => 'file:./index.js',
+		'viewScript' => 'file:./view.js',
 		'render' => 'file:./render.php'
 	)
 );
