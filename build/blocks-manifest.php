@@ -69,6 +69,10 @@ return array(
 			'ratioMobile' => array(
 				'type' => 'string',
 				'default' => '8/5'
+			),
+			'roundedCorners' => array(
+				'type' => 'boolean',
+				'default' => false
 			)
 		),
 		'editorScript' => 'file:./index.js',

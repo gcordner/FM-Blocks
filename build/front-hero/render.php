@@ -37,6 +37,7 @@ $attrs = wp_parse_args(
 		'aspectRatioPreset' => 'banner',
 		'ratioDesktop'      => '',
 		'ratioMobile'       => '',
+		'roundedCorners'    => false,
 	)
 );
 
@@ -157,7 +158,7 @@ $block_id = 'fm-front-hero-' . wp_unique_id();
 	</script>
 
 	<style>
-		.fm-front-hero__media{display:block;width:100%;aspect-ratio:var(--fh-desktop,384/120);overflow:hidden}
+		.fm-front-hero__media{display:block;width:100%;aspect-ratio:var(--fh-desktop,384/120);overflow:hidden<?php echo $attrs['roundedCorners'] ? ';border-radius:25px' : ''; ?>}
 		.fm-front-hero__media img{width:100%;height:100%;object-fit:cover;display:block}
 		@media (max-width:767px){
 			.fm-front-hero__media{width:100vw;margin-left:calc(50% - 50vw);aspect-ratio:var(--fh-mobile,8/5)}

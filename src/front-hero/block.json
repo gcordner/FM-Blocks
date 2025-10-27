@@ -14,7 +14,8 @@
 		"mobile2Alt": { "type": "string", "default": "" },
 		"aspectRatioPreset": { "type": "string", "default": "banner" },
 		"ratioDesktop": { "type": "string", "default": "384/120" },
-		"ratioMobile": { "type": "string", "default": "8/5" }
+		"ratioMobile": { "type": "string", "default": "8/5" },
+		"roundedCorners": { "type": "boolean", "default": false }
 	},
 	"editorScript": "file:./index.js",
 	"viewScript": "file:./view.js",

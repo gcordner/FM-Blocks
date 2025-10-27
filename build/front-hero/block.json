@@ -45,6 +45,10 @@
     "ratioMobile": {
       "type": "string",
       "default": "8/5"
+    },
+    "roundedCorners": {
+      "type": "boolean",
+      "default": false
     }
   },
   "editorScript": "file:./index.js",

@@ -8,6 +8,7 @@ import {
 	Button,
 	TextControl,
 	RadioControl,
+	ToggleControl,
 } from "@wordpress/components";
 
 // Aspect ratio presets
@@ -150,6 +151,14 @@ export default function Edit({ attributes, setAttributes }) {
 						{__("desktop", "fm-blocks")}) / {ASPECT_RATIO_PRESETS.hero.mobile} (
 						{__("mobile", "fm-blocks")})
 					</p>
+				</PanelBody>
+				<PanelBody title={__("Style", "fm-blocks")} initialOpen={false}>
+					<ToggleControl
+						label={__("Rounded corners", "fm-blocks")}
+						checked={attributes.roundedCorners || false}
+						onChange={(value) => setAttributes({ roundedCorners: value })}
+						help={__("Add 25px border radius to the image", "fm-blocks")}
+					/>
 				</PanelBody>
 			</InspectorControls>
 
