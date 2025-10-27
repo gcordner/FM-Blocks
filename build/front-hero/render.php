@@ -9,21 +9,34 @@
  *
  * @package FM_Blocks
  * @subpackage Front_Hero
- * @since 1.0.0.1
+ * @since 1.0.0
  */
+
+// Aspect ratio presets - must match edit.js
+$aspect_ratio_presets = array(
+	'banner' => array(
+		'desktop' => '384/120',
+		'mobile'  => '8/5',
+	),
+	'hero'   => array(
+		'desktop' => '6/4',
+		'mobile'  => '4/5',
+	),
+);
 
 // $attributes are available when using "render": "file:./render.php".
 $attrs = wp_parse_args(
 	isset( $attributes ) ? $attributes : array(),
 	array(
-		'desktopId'    => 0,
-		'desktopAlt'   => '',
-		'mobile1Id'    => 0,
-		'mobile1Alt'   => '',
-		'mobile2Id'    => 0,
-		'mobile2Alt'   => '',
-		'ratioDesktop' => '384/120',
-		'ratioMobile'  => '8/5',
+		'desktopId'         => 0,
+		'desktopAlt'        => '',
+		'mobile1Id'         => 0,
+		'mobile1Alt'        => '',
+		'mobile2Id'         => 0,
+		'mobile2Alt'        => '',
+		'aspectRatioPreset' => 'banner',
+		'ratioDesktop'      => '',
+		'ratioMobile'       => '',
 	)
 );
 
@@ -72,8 +85,16 @@ $desktop = $get_img( $attrs['desktopId'], $attrs['desktopAlt'], 'desktop' );
 $mobile1 = $get_img( $attrs['mobile1Id'], $attrs['mobile1Alt'], 'mobile1' );
 $mobile2 = $get_img( $attrs['mobile2Id'], $attrs['mobile2Alt'], 'mobile2' );
 
-$ratio_desktop = ! empty( $attrs['ratioDesktop'] ) ? $attrs['ratioDesktop'] : '6/4';
-$ratio_mobile  = ! empty( $attrs['ratioMobile'] ) ? $attrs['ratioMobile'] : '4/5';
+// Get aspect ratios from preset or use stored values
+$preset = $attrs['aspectRatioPreset'];
+if ( ! empty( $preset ) && isset( $aspect_ratio_presets[ $preset ] ) ) {
+	$ratio_desktop = $aspect_ratio_presets[ $preset ]['desktop'];
+	$ratio_mobile  = $aspect_ratio_presets[ $preset ]['mobile'];
+} else {
+	// Fallback to stored values or ultimate defaults
+	$ratio_desktop = ! empty( $attrs['ratioDesktop'] ) ? $attrs['ratioDesktop'] : '384/120';
+	$ratio_mobile  = ! empty( $attrs['ratioMobile'] ) ? $attrs['ratioMobile'] : '8/5';
+}
 
 // Determine initial image based on viewport - desktop by default
 $initial = $desktop;

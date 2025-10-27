@@ -34,6 +34,10 @@
       "type": "string",
       "default": ""
     },
+    "aspectRatioPreset": {
+      "type": "string",
+      "default": "banner"
+    },
     "ratioDesktop": {
       "type": "string",
       "default": "384/120"

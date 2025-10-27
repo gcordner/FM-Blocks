@@ -12,6 +12,7 @@
 		"mobile1Alt": { "type": "string", "default": "" },
 		"mobile2Id": { "type": "number" },
 		"mobile2Alt": { "type": "string", "default": "" },
+		"aspectRatioPreset": { "type": "string", "default": "banner" },
 		"ratioDesktop": { "type": "string", "default": "384/120" },
 		"ratioMobile": { "type": "string", "default": "8/5" }
 	},

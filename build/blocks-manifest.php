@@ -58,6 +58,10 @@ return array(
 				'type' => 'string',
 				'default' => ''
 			),
+			'aspectRatioPreset' => array(
+				'type' => 'string',
+				'default' => 'banner'
+			),
 			'ratioDesktop' => array(
 				'type' => 'string',
 				'default' => '384/120'
