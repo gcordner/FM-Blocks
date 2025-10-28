@@ -12,7 +12,7 @@
  * @since 1.0.0
  */
 
-// Aspect ratio presets - must match edit.js
+// Aspect ratio presets - must match edit.js.
 $aspect_ratio_presets = array(
 	'banner' => array(
 		'desktop' => '384/120',
@@ -41,70 +41,50 @@ $attrs = wp_parse_args(
 	)
 );
 
-// Hardcoded fallbacks (bundled assets).
-$fallbacks = array(
-	'desktop' => array(
-		'src' => FM_BLOCKS_ASSETS_URL . 'front-hero/desktop.webp',
-		'alt' => 'Hero image showing the desktop layout view',
-	),
-	'mobile1' => array(
-		'src' => FM_BLOCKS_ASSETS_URL . 'front-hero/mobile.webp',
-		'alt' => 'Hero image optimized for mobile layout, version one',
-	),
-	'mobile2' => array(
-		'src' => FM_BLOCKS_ASSETS_URL . 'front-hero/mobile02.webp',
-		'alt' => 'Hero image optimized for mobile layout, version two',
-	),
-);
-
-// Helper: get src/alt using attachment ID with optional custom alt,
-// falling back to the provided fallback when missing.
-$get_img = static function ( $id, $custom_alt, $fallback_key ) use ( $fallbacks ) {
+// Helper: get src/alt using attachment ID with optional custom alt.
+$get_img = static function ( $id, $custom_alt ) {
 	$src = '';
 	$alt = '';
 
 	if ( $id ) {
-		$src = wp_get_attachment_image_url( (int) $id, 'full' ) ?: '';
+		$url = wp_get_attachment_image_url( (int) $id, 'full' );
+		$src = $url ? $url : '';
 		$alt = trim( (string) $custom_alt );
 		if ( '' === $alt ) {
 			$alt = (string) get_post_meta( (int) $id, '_wp_attachment_image_alt', true );
 		}
 	}
 
-	// Fallbacks if no ID or missing data.
-	if ( '' === $src ) {
-		$src = $fallbacks[ $fallback_key ]['src'];
-	}
-	if ( '' === $alt ) {
-		$alt = $fallbacks[ $fallback_key ]['alt'];
-	}
-
-	return array( 'src' => $src, 'alt' => $alt );
+	return array(
+		'src' => $src,
+		'alt' => $alt,
+	);
 };
 
-$desktop = $get_img( $attrs['desktopId'], $attrs['desktopAlt'], 'desktop' );
-$mobile1 = $get_img( $attrs['mobile1Id'], $attrs['mobile1Alt'], 'mobile1' );
-$mobile2 = $get_img( $attrs['mobile2Id'], $attrs['mobile2Alt'], 'mobile2' );
+$desktop = $get_img( $attrs['desktopId'], $attrs['desktopAlt'] );
+$mobile1 = $get_img( $attrs['mobile1Id'], $attrs['mobile1Alt'] );
+$mobile2 = $get_img( $attrs['mobile2Id'], $attrs['mobile2Alt'] );
 
-// Get aspect ratios from preset or use stored values
+// Don't render if no desktop image selected.
+if ( empty( $desktop['src'] ) ) {
+	return;
+}
+
+// Get aspect ratios from preset or use stored values.
 $preset = $attrs['aspectRatioPreset'];
 if ( ! empty( $preset ) && isset( $aspect_ratio_presets[ $preset ] ) ) {
 	$ratio_desktop = $aspect_ratio_presets[ $preset ]['desktop'];
 	$ratio_mobile  = $aspect_ratio_presets[ $preset ]['mobile'];
 } else {
-	// Fallback to stored values or ultimate defaults
+	// Fallback to stored values or ultimate defaults.
 	$ratio_desktop = ! empty( $attrs['ratioDesktop'] ) ? $attrs['ratioDesktop'] : '384/120';
 	$ratio_mobile  = ! empty( $attrs['ratioMobile'] ) ? $attrs['ratioMobile'] : '8/5';
 }
 
-// Determine initial image based on viewport - desktop by default
+// Determine initial image based on viewport - desktop by default.
 $initial = $desktop;
 
-if ( empty( $initial['src'] ) ) {
-	return;
-}
-
-// Generate unique ID for this block instance
+// Generate unique ID for this block instance.
 $block_id = 'fm-front-hero-' . wp_unique_id();
 ?>
 <section
@@ -131,31 +111,49 @@ $block_id = 'fm-front-hero-' . wp_unique_id();
 	</div>
 
 	<script>
-	(function() {
-		var block = document.getElementById('<?php echo esc_js( $block_id ); ?>');
-		if (!block) return;
-		
-		var img = block.querySelector('.fm-front-hero__img');
-		if (!img) return;
+(function() {
+	var block = document.getElementById('<?php echo esc_js( $block_id ); ?>');
+	if (!block) return;
+	
+	var img = block.querySelector('.fm-front-hero__img');
+	if (!img) return;
 
-		var isMobile = window.matchMedia('(max-width: 767px)').matches;
+	var isMobile = window.matchMedia('(max-width: 767px)').matches;
+	
+	if (isMobile) {
+		// Check if both mobile images exist
+		var hasMobileA = block.dataset.mobileASrc;
+		var hasMobileB = block.dataset.mobileBSrc;
 		
-		if (isMobile) {
-			// Pick random mobile image and store choice
-			var choice = Math.random() < 0.5 ? 'A' : 'B';
-			block._fhMobileChoice = choice;
-			block._fhInitialIsMobile = true;
-			
-			// Update to mobile image
-			var src = choice === 'A' ? block.dataset.mobileASrc : block.dataset.mobileBSrc;
-			var alt = choice === 'A' ? block.dataset.mobileAAlt : block.dataset.mobileBAlt;
-			if (src) {
-				img.src = src;
-				if (alt) img.alt = alt;
-			}
+		var choice, src, alt;
+		
+		if (hasMobileA && hasMobileB) {
+			// Both exist - pick randomly
+			choice = Math.random() < 0.5 ? 'A' : 'B';
+		} else if (hasMobileA) {
+			// Only A exists
+			choice = 'A';
+		} else if (hasMobileB) {
+			// Only B exists
+			choice = 'B';
+		} else {
+			// Neither exists - keep desktop
+			return;
 		}
-	})();
-	</script>
+		
+		block._fhMobileChoice = choice;
+		block._fhInitialIsMobile = true;
+		
+		src = choice === 'A' ? block.dataset.mobileASrc : block.dataset.mobileBSrc;
+		alt = choice === 'A' ? block.dataset.mobileAAlt : block.dataset.mobileBAlt;
+		
+		if (src) {
+			img.src = src;
+			if (alt) img.alt = alt;
+		}
+	}
+})();
+</script>
 
 	<style>
 		.fm-front-hero__media{display:block;width:100%;aspect-ratio:var(--fh-desktop,384/120);overflow:hidden<?php echo $attrs['roundedCorners'] ? ';border-radius:25px' : ''; ?>}

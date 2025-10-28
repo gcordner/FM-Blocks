@@ -4,7 +4,7 @@
 	"title": "Front Page Hero",
 	"category": "media",
 	"icon": "format-image",
-	"supports": { "align": ["wide", "full"], "anchor": true, "html": false },
+	"supports": { "align": [ "wide", "full" ], "anchor": true, "html": false },
 	"attributes": {
 		"desktopId": { "type": "number" },
 		"desktopAlt": { "type": "string", "default": "" },
