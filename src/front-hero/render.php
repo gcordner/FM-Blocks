@@ -86,11 +86,18 @@ $initial = $desktop;
 
 // Generate unique ID for this block instance.
 $block_id = 'fm-front-hero-' . wp_unique_id();
+
+// Build class names array.
+$class_names = array( 'fm-front-hero' );
+if ( ! empty( $attrs['className'] ) ) {
+	$class_names[] = $attrs['className'];
+}
+$class_attr = implode( ' ', $class_names );
 ?>
 <section
 	id="<?php echo esc_attr( $block_id ); ?>"
-	class="fm-front-hero"
-	style="<?php echo esc_attr( '--fh-desktop:' . $ratio_desktop . ';--fh-mobile:' . $ratio_mobile ); ?>"
+class="<?php echo esc_attr( $class_attr ); ?>"	
+style="<?php echo esc_attr( '--fh-desktop:' . $ratio_desktop . ';--fh-mobile:' . $ratio_mobile ); ?>"
 	data-fh="1"
 	data-desktop-src="<?php echo esc_url( $desktop['src'] ); ?>"
 	data-desktop-alt="<?php echo esc_attr( $desktop['alt'] ); ?>"
