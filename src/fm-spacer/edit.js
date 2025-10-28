@@ -14,9 +14,9 @@ export default function Edit({ attributes, setAttributes }) {
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={__("Spacer Settings", "fm-blocks")}>
+				<PanelBody title={__("Spacer Settings", "plk-blocks")}>
 					<RangeControl
-						label={__("Desktop Height (px)", "fm-blocks")}
+						label={__("Desktop Height (px)", "plk-blocks")}
 						value={attributes.desktopHeight}
 						onChange={(value) => setAttributes({ desktopHeight: value })}
 						min={0}
@@ -24,7 +24,7 @@ export default function Edit({ attributes, setAttributes }) {
 						step={10}
 					/>
 					<RangeControl
-						label={__("Mobile Height (px)", "fm-blocks")}
+						label={__("Mobile Height (px)", "plk-blocks")}
 						value={attributes.mobileHeight}
 						onChange={(value) => setAttributes({ mobileHeight: value })}
 						min={0}
@@ -32,9 +32,9 @@ export default function Edit({ attributes, setAttributes }) {
 						step={10}
 					/>
 					<p style={{ fontSize: "12px", color: "#757575", marginTop: "8px" }}>
-						{__("Desktop:", "fm-blocks")} {attributes.desktopHeight}px
+						{__("Desktop:", "plk-blocks")} {attributes.desktopHeight}px
 						<br />
-						{__("Mobile:", "fm-blocks")} {attributes.mobileHeight}px
+						{__("Mobile:", "plk-blocks")} {attributes.mobileHeight}px
 					</p>
 				</PanelBody>
 			</InspectorControls>

@@ -1,7 +1,7 @@
 import { registerBlockType } from "@wordpress/blocks";
 import Edit from "./edit";
 
-registerBlockType("fm/spacer", {
+registerBlockType("plk/spacer", {
 	edit: Edit,
 	save: () => null,
 });

@@ -2,7 +2,7 @@
 /**
  * Render callback for the Responsive Spacer block.
  *
- * @package FM_Blocks
+ * @package plk_Blocks
  * @subpackage Spacer
  * @since 1.0.0
  */
@@ -19,7 +19,7 @@ $desktop_height = absint( $attrs['desktopHeight'] );
 $mobile_height  = absint( $attrs['mobileHeight'] );
 
 // Build class names array.
-$class_names = array( 'fm-spacer' );
+$class_names = array( 'plk-spacer' );
 if ( ! empty( $attrs['className'] ) ) {
 	$class_names[] = $attrs['className'];
 }
@@ -31,11 +31,11 @@ $class_attr = implode( ' ', $class_names );
 	aria-hidden="true"
 >
 	<style>
-		.fm-spacer {
+		.plk-spacer {
 			height: var(--spacer-desktop, 80px);
 		}
 		@media (max-width: 767px) {
-			.fm-spacer {
+			.plk-spacer {
 				height: var(--spacer-mobile, 40px);
 			}
 		}

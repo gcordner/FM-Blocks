@@ -24,8 +24,8 @@ return array(
 	),
 	'fm-spacer' => array(
 		'apiVersion' => 3,
-		'name' => 'fm/spacer',
-		'title' => 'Responsive Spacer',
+		'name' => 'plk/spacer',
+		'title' => 'plk Responsive Spacer',
 		'category' => 'design',
 		'icon' => 'arrow-down',
 		'keywords' => array(
