@@ -24,10 +24,16 @@ return array(
 	),
 	'front-hero' => array(
 		'apiVersion' => 3,
-		'name' => 'fm/front-hero',
+		'name' => 'plk/front-hero',
 		'title' => 'Front Page Hero',
 		'category' => 'media',
 		'icon' => 'format-image',
+		'keywords' => array(
+			'plk',
+			'hero',
+			'banner',
+			'image'
+		),
 		'supports' => array(
 			'align' => array(
 				'wide',

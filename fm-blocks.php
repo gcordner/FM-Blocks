@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Fm Blocks
  * Description:       A collection of custom blocks for the WordPress block editor.
- * Version:           0.1.0
+ * Version:           0.1.0.2
  * Requires at least: 6.7
  * Requires PHP:      7.4
  * Author:            Geoff Cordner

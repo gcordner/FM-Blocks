@@ -179,7 +179,7 @@ export default function Edit({ attributes, setAttributes }) {
 			</InspectorControls>
 
 			{/* Live server preview */}
-			<ServerSideRender block="fm/front-hero" attributes={attributes} />
+			<ServerSideRender block="plk/front-hero" attributes={attributes} />
 		</div>
 	);
 }

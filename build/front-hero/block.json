@@ -1,9 +1,15 @@
 {
   "apiVersion": 3,
-  "name": "fm/front-hero",
+  "name": "plk/front-hero",
   "title": "Front Page Hero",
   "category": "media",
   "icon": "format-image",
+  "keywords": [
+    "plk",
+    "hero",
+    "banner",
+    "image"
+  ],
   "supports": {
     "align": [
       "wide",
