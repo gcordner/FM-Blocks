@@ -22,6 +22,34 @@ return array(
 		'style' => 'file:./style-index.css',
 		'viewScript' => 'file:./view.js'
 	),
+	'fm-spacer' => array(
+		'apiVersion' => 3,
+		'name' => 'fm/spacer',
+		'title' => 'Responsive Spacer',
+		'category' => 'design',
+		'icon' => 'arrow-down',
+		'keywords' => array(
+			'spacer',
+			'space',
+			'height',
+			'gap'
+		),
+		'supports' => array(
+			'anchor' => true,
+			'html' => false
+		),
+		'attributes' => array(
+			'desktopHeight' => array(
+				'type' => 'number',
+				'default' => 80
+			),
+			'mobileHeight' => array(
+				'type' => 'number'
+			)
+		),
+		'editorScript' => 'file:./index.js',
+		'render' => 'file:./render.php'
+	),
 	'front-hero' => array(
 		'apiVersion' => 3,
 		'name' => 'plk/front-hero',

@@ -1,0 +1,28 @@
+{
+  "apiVersion": 3,
+  "name": "fm/spacer",
+  "title": "Responsive Spacer",
+  "category": "design",
+  "icon": "arrow-down",
+  "keywords": [
+    "spacer",
+    "space",
+    "height",
+    "gap"
+  ],
+  "supports": {
+    "anchor": true,
+    "html": false
+  },
+  "attributes": {
+    "desktopHeight": {
+      "type": "number",
+      "default": 80
+    },
+    "mobileHeight": {
+      "type": "number"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php"
+}
