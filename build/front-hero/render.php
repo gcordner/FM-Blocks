@@ -107,6 +107,18 @@ style="<?php echo esc_attr( '--fh-desktop:' . $ratio_desktop . ';--fh-mobile:' .
 	data-mobile-b-alt="<?php echo esc_attr( $mobile2['alt'] ); ?>"
 >
 	<div class="fm-front-hero__media">
+	<?php if ( ! empty( $attrs['linkUrl'] ) ) : ?>
+		<a href="<?php echo esc_url( $attrs['linkUrl'] ); ?>">
+			<img
+				class="fm-front-hero__img"
+				src="<?php echo esc_url( $initial['src'] ); ?>"
+				alt="<?php echo esc_attr( $initial['alt'] ); ?>"
+				loading="eager"
+				fetchpriority="high"
+				decoding="async"
+			/>
+		</a>
+	<?php else : ?>
 		<img
 			class="fm-front-hero__img"
 			src="<?php echo esc_url( $initial['src'] ); ?>"
@@ -115,8 +127,8 @@ style="<?php echo esc_attr( '--fh-desktop:' . $ratio_desktop . ';--fh-mobile:' .
 			fetchpriority="high"
 			decoding="async"
 		/>
-	</div>
-
+	<?php endif; ?>
+</div>
 	<script>
 (function() {
 	var block = document.getElementById('<?php echo esc_js( $block_id ); ?>');

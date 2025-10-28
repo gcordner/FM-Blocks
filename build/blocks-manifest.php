@@ -73,6 +73,10 @@ return array(
 			'roundedCorners' => array(
 				'type' => 'boolean',
 				'default' => false
+			),
+			'linkUrl' => array(
+				'type' => 'string',
+				'default' => ''
 			)
 		),
 		'editorScript' => 'file:./index.js',

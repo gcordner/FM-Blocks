@@ -1,20 +1,20 @@
 import { __ } from "@wordpress/i18n";
 import { useSelect } from "@wordpress/data";
 import {
+	PanelBody,
+	Button,
+	TextControl,
+	RadioControl,
+	ToggleControl,
+	__experimentalInputControl as InputControl,
+} from "@wordpress/components";
+import {
 	useBlockProps,
 	InspectorControls,
 	MediaUpload,
 	MediaUploadCheck,
 } from "@wordpress/block-editor";
 import ServerSideRender from "@wordpress/server-side-render";
-import {
-	PanelBody,
-	Button,
-	TextControl,
-	RadioControl,
-	ToggleControl,
-} from "@wordpress/components";
-
 // Aspect ratio presets
 const ASPECT_RATIO_PRESETS = {
 	banner: {
@@ -162,6 +162,18 @@ export default function Edit({ attributes, setAttributes }) {
 						checked={attributes.roundedCorners || false}
 						onChange={(value) => setAttributes({ roundedCorners: value })}
 						help={__("Add 25px border radius to the image", "fm-blocks")}
+					/>
+				</PanelBody>
+				<PanelBody title={__("Link", "fm-blocks")} initialOpen={false}>
+					<InputControl
+						label={__("URL", "fm-blocks")}
+						value={attributes.linkUrl || ""}
+						onChange={(value) => setAttributes({ linkUrl: value })}
+						help={__(
+							"Make the image clickable. Leave empty for no link.",
+							"fm-blocks",
+						)}
+						placeholder="https://example.com"
 					/>
 				</PanelBody>
 			</InspectorControls>

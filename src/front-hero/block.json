@@ -4,7 +4,7 @@
 	"title": "Front Page Hero",
 	"category": "media",
 	"icon": "format-image",
-	"supports": { "align": [ "wide", "full" ], "anchor": true, "html": false },
+	"supports": { "align": ["wide", "full"], "anchor": true, "html": false },
 	"attributes": {
 		"desktopId": { "type": "number" },
 		"desktopAlt": { "type": "string", "default": "" },
@@ -15,7 +15,8 @@
 		"aspectRatioPreset": { "type": "string", "default": "banner" },
 		"ratioDesktop": { "type": "string", "default": "384/120" },
 		"ratioMobile": { "type": "string", "default": "8/5" },
-		"roundedCorners": { "type": "boolean", "default": false }
+		"roundedCorners": { "type": "boolean", "default": false },
+		"linkUrl": { "type": "string", "default": "" }
 	},
 	"editorScript": "file:./index.js",
 	"viewScript": "file:./view.js",

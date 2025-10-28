@@ -49,6 +49,10 @@
     "roundedCorners": {
       "type": "boolean",
       "default": false
+    },
+    "linkUrl": {
+      "type": "string",
+      "default": ""
     }
   },
   "editorScript": "file:./index.js",
